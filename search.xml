@@ -8,7 +8,7 @@
       <link href="/2021/10/23/Linux%E7%BB%9F%E8%AE%A1%E6%96%87%E4%BB%B6%E6%88%96%E6%96%87%E4%BB%B6%E5%A4%B9%E6%95%B0%E9%87%8F/"/>
       <url>/2021/10/23/Linux%E7%BB%9F%E8%AE%A1%E6%96%87%E4%BB%B6%E6%88%96%E6%96%87%E4%BB%B6%E5%A4%B9%E6%95%B0%E9%87%8F/</url>
       
-        <content type="html"><![CDATA[<p>以下内容摘自<a href="(http://noahsnail.com/2017/02/07/2017-02-07-Linux%E7%BB%9F%E8%AE%A1%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6%E6%95%B0%E7%9B%AE/)">Tyan</a>,方便后续自己查询使用，感谢作者</p><h3 id="统计命令"><a href="#统计命令" class="headerlink" title="统计命令"></a>统计命令</h3><p>Linux下有三个命令:<code>ls</code>,<code>grep</code>,<code>wc</code>。通过这三个命令的组合可实现统计目录下文件及文件夹的个数。</p><ol><li><p>统计当前目录下文件个数</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l | grep &quot;^-&quot; | wc -l</span><br></pre></td></tr></table></figure></li><li><p>统计当前目录下文件的个数（包括子目录）</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -lR| grep &quot;^-&quot; | wc -l</span><br></pre></td></tr></table></figure></li><li><p>查看某目录下文件夹(目录)的个数（包括子目录）</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -lR | grep &quot;^d&quot; | wc -l</span><br></pre></td></tr></table></figure></li></ol><h3 id="命令详解"><a href="#命令详解" class="headerlink" title="命令详解"></a>命令详解</h3><ul><li><p><code>ls -l</code></p><p>长列表输出该目录下文件信息(注意这里的文件是指目录、链接、设备文件等)，每一行对应一个文件或目录，<code>ls -lR</code>是列出所有文件，包括子目录。</p></li><li><p><code>grep &quot;^_&quot;</code></p><p>过滤<code>ls</code>的输出信息。正则表达式”^_”表示以<code>_</code>开头，因为统计文件夹改为<code>^d</code></p></li><li><p><code>wc -l</code></p><p>统计输出信息的行数，统计结果就是输出信息的行数，一行信息对应一个文件</p></li></ul>]]></content>
+        <content type="html"><![CDATA[<p>以下内容摘自<a href="http://noahsnail.com/2017/02/07/2017-02-07-Linux%E7%BB%9F%E8%AE%A1%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6%E6%95%B0%E7%9B%AE/">Tyan</a>,方便后续自己查询使用，感谢作者</p><h3 id="统计命令"><a href="#统计命令" class="headerlink" title="统计命令"></a>统计命令</h3><p>Linux下有三个命令:<code>ls</code>,<code>grep</code>,<code>wc</code>。通过这三个命令的组合可实现统计目录下文件及文件夹的个数。</p><ol><li><p>统计当前目录下文件个数</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l | grep &quot;^-&quot; | wc -l</span><br></pre></td></tr></table></figure></li><li><p>统计当前目录下文件的个数（包括子目录）</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -lR| grep &quot;^-&quot; | wc -l</span><br></pre></td></tr></table></figure></li><li><p>查看某目录下文件夹(目录)的个数（包括子目录）</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -lR | grep &quot;^d&quot; | wc -l</span><br></pre></td></tr></table></figure></li></ol><h3 id="命令详解"><a href="#命令详解" class="headerlink" title="命令详解"></a>命令详解</h3><ul><li><p><code>ls -l</code></p><p>长列表输出该目录下文件信息(注意这里的文件是指目录、链接、设备文件等)，每一行对应一个文件或目录，<code>ls -lR</code>是列出所有文件，包括子目录。</p></li><li><p><code>grep &quot;^_&quot;</code></p><p>过滤<code>ls</code>的输出信息。正则表达式”^_”表示以<code>_</code>开头，因为统计文件夹改为<code>^d</code></p></li><li><p><code>wc -l</code></p><p>统计输出信息的行数，统计结果就是输出信息的行数，一行信息对应一个文件</p></li></ul>]]></content>
       
       
       <categories>
@@ -32,16 +32,16 @@
       
       <categories>
           
-          <category> git </category>
+          <category> Git </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> git </tag>
+            <tag> Git </tag>
             
-            <tag> ssh </tag>
+            <tag> Ssh </tag>
             
         </tags>
       
@@ -59,7 +59,7 @@
       
       <categories>
           
-          <category> 代理 </category>
+          <category> proxy </category>
           
       </categories>
       
@@ -68,7 +68,7 @@
             
             <tag> Windows </tag>
             
-            <tag> 代理 </tag>
+            <tag> proxy </tag>
             
         </tags>
       
@@ -95,7 +95,7 @@
             
             <tag> Linux </tag>
             
-            <tag> shell </tag>
+            <tag> Shell </tag>
             
         </tags>
       
