@@ -3,11 +3,11 @@
   <title>HelloWei</title>
   
   
-  <link href="http://www.hellowei.ga:9555/atom.xml" rel="self"/>
+  <link href="https://blog.hellowei.ga/atom.xml" rel="self"/>
   
-  <link href="http://www.hellowei.ga:9555/"/>
+  <link href="https://blog.hellowei.ga/"/>
   <updated>2021-10-29T03:53:56.834Z</updated>
-  <id>http://www.hellowei.ga:9555/</id>
+  <id>https://blog.hellowei.ga/</id>
   
   <author>
     <name>不吃西柚</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>C++Primer读书笔记(一)-访问控制与继承</title>
-    <link href="http://www.hellowei.ga:9555/2021/10/27/C-Primer%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%BB%A7%E6%89%BF/"/>
-    <id>http://www.hellowei.ga:9555/2021/10/27/C-Primer%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%BB%A7%E6%89%BF/</id>
+    <link href="https://blog.hellowei.ga/2021/10/27/C-Primer%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%BB%A7%E6%89%BF/"/>
+    <id>https://blog.hellowei.ga/2021/10/27/C-Primer%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%BB%A7%E6%89%BF/</id>
     <published>2021-10-27T12:35:23.000Z</published>
     <updated>2021-10-29T03:53:56.834Z</updated>
     
@@ -34,19 +34,19 @@
     
     
     
-    <category term="C++Primer读书笔记" scheme="http://www.hellowei.ga:9555/categories/C-Primer%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    <category term="C++Primer读书笔记" scheme="https://blog.hellowei.ga/categories/C-Primer%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="C++" scheme="http://www.hellowei.ga:9555/tags/C/"/>
+    <category term="C++" scheme="https://blog.hellowei.ga/tags/C/"/>
     
-    <category term="读书笔记" scheme="http://www.hellowei.ga:9555/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    <category term="读书笔记" scheme="https://blog.hellowei.ga/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title>Linux统计文件或文件夹数量</title>
-    <link href="http://www.hellowei.ga:9555/2021/10/27/Linux%E7%BB%9F%E8%AE%A1%E6%96%87%E4%BB%B6%E6%88%96%E6%96%87%E4%BB%B6%E5%A4%B9%E6%95%B0%E9%87%8F/"/>
-    <id>http://www.hellowei.ga:9555/2021/10/27/Linux%E7%BB%9F%E8%AE%A1%E6%96%87%E4%BB%B6%E6%88%96%E6%96%87%E4%BB%B6%E5%A4%B9%E6%95%B0%E9%87%8F/</id>
+    <link href="https://blog.hellowei.ga/2021/10/27/Linux%E7%BB%9F%E8%AE%A1%E6%96%87%E4%BB%B6%E6%88%96%E6%96%87%E4%BB%B6%E5%A4%B9%E6%95%B0%E9%87%8F/"/>
+    <id>https://blog.hellowei.ga/2021/10/27/Linux%E7%BB%9F%E8%AE%A1%E6%96%87%E4%BB%B6%E6%88%96%E6%96%87%E4%BB%B6%E5%A4%B9%E6%95%B0%E9%87%8F/</id>
     <published>2021-10-27T06:36:18.462Z</published>
     <updated>2021-10-27T06:36:18.462Z</updated>
     
@@ -60,15 +60,15 @@
     
     
     
-    <category term="Linux" scheme="http://www.hellowei.ga:9555/categories/Linux/"/>
+    <category term="Linux" scheme="https://blog.hellowei.ga/categories/Linux/"/>
     
     
   </entry>
   
   <entry>
     <title>MoreEffectiveC++(一)</title>
-    <link href="http://www.hellowei.ga:9555/2021/10/26/MoreEffectiveC/"/>
-    <id>http://www.hellowei.ga:9555/2021/10/26/MoreEffectiveC/</id>
+    <link href="https://blog.hellowei.ga/2021/10/26/MoreEffectiveC/"/>
+    <id>https://blog.hellowei.ga/2021/10/26/MoreEffectiveC/</id>
     <published>2021-10-26T00:55:31.000Z</published>
     <updated>2021-10-27T06:36:18.462Z</updated>
     
@@ -82,17 +82,17 @@
     
     
     
-    <category term="C++" scheme="http://www.hellowei.ga:9555/categories/C/"/>
+    <category term="C++" scheme="https://blog.hellowei.ga/categories/C/"/>
     
     
-    <category term="C++" scheme="http://www.hellowei.ga:9555/tags/C/"/>
+    <category term="C++" scheme="https://blog.hellowei.ga/tags/C/"/>
     
   </entry>
   
   <entry>
     <title>Git之ssh连接多个远程仓库</title>
-    <link href="http://www.hellowei.ga:9555/2021/10/21/Git%E4%B9%8Bssh%E8%BF%9E%E6%8E%A5%E5%A4%9A%E4%B8%AA%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/"/>
-    <id>http://www.hellowei.ga:9555/2021/10/21/Git%E4%B9%8Bssh%E8%BF%9E%E6%8E%A5%E5%A4%9A%E4%B8%AA%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/</id>
+    <link href="https://blog.hellowei.ga/2021/10/21/Git%E4%B9%8Bssh%E8%BF%9E%E6%8E%A5%E5%A4%9A%E4%B8%AA%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/"/>
+    <id>https://blog.hellowei.ga/2021/10/21/Git%E4%B9%8Bssh%E8%BF%9E%E6%8E%A5%E5%A4%9A%E4%B8%AA%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/</id>
     <published>2021-10-21T14:34:38.000Z</published>
     <updated>2021-10-23T06:23:17.309Z</updated>
     
@@ -106,19 +106,19 @@
     
     
     
-    <category term="Git" scheme="http://www.hellowei.ga:9555/categories/Git/"/>
+    <category term="Git" scheme="https://blog.hellowei.ga/categories/Git/"/>
     
     
-    <category term="Git" scheme="http://www.hellowei.ga:9555/tags/Git/"/>
+    <category term="Git" scheme="https://blog.hellowei.ga/tags/Git/"/>
     
-    <category term="Ssh" scheme="http://www.hellowei.ga:9555/tags/Ssh/"/>
+    <category term="Ssh" scheme="https://blog.hellowei.ga/tags/Ssh/"/>
     
   </entry>
   
   <entry>
     <title>Windows终端代理</title>
-    <link href="http://www.hellowei.ga:9555/2021/10/21/Windows%E7%BB%88%E7%AB%AF%E4%BB%A3%E7%90%86/"/>
-    <id>http://www.hellowei.ga:9555/2021/10/21/Windows%E7%BB%88%E7%AB%AF%E4%BB%A3%E7%90%86/</id>
+    <link href="https://blog.hellowei.ga/2021/10/21/Windows%E7%BB%88%E7%AB%AF%E4%BB%A3%E7%90%86/"/>
+    <id>https://blog.hellowei.ga/2021/10/21/Windows%E7%BB%88%E7%AB%AF%E4%BB%A3%E7%90%86/</id>
     <published>2021-10-21T08:03:19.000Z</published>
     <updated>2021-10-23T06:23:17.309Z</updated>
     
@@ -133,19 +133,19 @@
     
     
     
-    <category term="proxy" scheme="http://www.hellowei.ga:9555/categories/proxy/"/>
+    <category term="proxy" scheme="https://blog.hellowei.ga/categories/proxy/"/>
     
     
-    <category term="Windows" scheme="http://www.hellowei.ga:9555/tags/Windows/"/>
+    <category term="Windows" scheme="https://blog.hellowei.ga/tags/Windows/"/>
     
-    <category term="proxy" scheme="http://www.hellowei.ga:9555/tags/proxy/"/>
+    <category term="proxy" scheme="https://blog.hellowei.ga/tags/proxy/"/>
     
   </entry>
   
   <entry>
     <title>&gt;/dev/null 2&gt;&amp;1详解</title>
-    <link href="http://www.hellowei.ga:9555/2021/10/19/dev-null-2-1%E8%AF%A6%E8%A7%A3/"/>
-    <id>http://www.hellowei.ga:9555/2021/10/19/dev-null-2-1%E8%AF%A6%E8%A7%A3/</id>
+    <link href="https://blog.hellowei.ga/2021/10/19/dev-null-2-1%E8%AF%A6%E8%A7%A3/"/>
+    <id>https://blog.hellowei.ga/2021/10/19/dev-null-2-1%E8%AF%A6%E8%A7%A3/</id>
     <published>2021-10-19T14:16:48.000Z</published>
     <updated>2021-10-23T06:23:17.309Z</updated>
     
@@ -159,19 +159,19 @@
     
     
     
-    <category term="Linux" scheme="http://www.hellowei.ga:9555/categories/Linux/"/>
+    <category term="Linux" scheme="https://blog.hellowei.ga/categories/Linux/"/>
     
     
-    <category term="Linux" scheme="http://www.hellowei.ga:9555/tags/Linux/"/>
+    <category term="Linux" scheme="https://blog.hellowei.ga/tags/Linux/"/>
     
-    <category term="Shell" scheme="http://www.hellowei.ga:9555/tags/Shell/"/>
+    <category term="Shell" scheme="https://blog.hellowei.ga/tags/Shell/"/>
     
   </entry>
   
   <entry>
     <title>Producer-consumer problem</title>
-    <link href="http://www.hellowei.ga:9555/2021/10/19/Producer-consumer%20problem/"/>
-    <id>http://www.hellowei.ga:9555/2021/10/19/Producer-consumer%20problem/</id>
+    <link href="https://blog.hellowei.ga/2021/10/19/Producer-consumer%20problem/"/>
+    <id>https://blog.hellowei.ga/2021/10/19/Producer-consumer%20problem/</id>
     <published>2021-10-19T07:45:51.000Z</published>
     <updated>2021-10-19T13:52:39.759Z</updated>
     
@@ -185,12 +185,12 @@
     
     
     
-    <category term="操作系统" scheme="http://www.hellowei.ga:9555/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    <category term="操作系统" scheme="https://blog.hellowei.ga/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
     
-    <category term="生产者" scheme="http://www.hellowei.ga:9555/tags/%E7%94%9F%E4%BA%A7%E8%80%85/"/>
+    <category term="生产者" scheme="https://blog.hellowei.ga/tags/%E7%94%9F%E4%BA%A7%E8%80%85/"/>
     
-    <category term="操作系统" scheme="http://www.hellowei.ga:9555/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    <category term="操作系统" scheme="https://blog.hellowei.ga/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
   </entry>
   
