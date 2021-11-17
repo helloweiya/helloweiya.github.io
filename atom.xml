@@ -6,7 +6,7 @@
   <link href="https://blog.hellowei.ga/atom.xml" rel="self"/>
   
   <link href="https://blog.hellowei.ga/"/>
-  <updated>2021-11-16T16:00:03.323Z</updated>
+  <updated>2021-11-17T16:00:02.503Z</updated>
   <id>https://blog.hellowei.ga/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>设计模式(十四)-Memento</title>
+    <link href="https://blog.hellowei.ga/2021/11/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F15/"/>
+    <id>https://blog.hellowei.ga/2021/11/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F15/</id>
+    <published>2021-11-17T14:45:19.000Z</published>
+    <updated>2021-11-17T16:00:02.503Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="设计动机"><a href="#设计动机" class="headerlink" title="设计动机"></a>设计动机</h2><ol><li>在软件构建过程中，某些对象的状态在转换过程中，可能由于某种需要，要求程序能够回溯到对象之前处于某个点时的状态。如果使用一些公有接口来让其他对象得到对象的状态，便会暴露对象的细节实现。</li><li>如何实现对象状态的良好保存与恢复?但同时又不会因此而破坏对象本身的封装性。</li></ol><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote><p>在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可以将该对象恢复到原先保存的状态。</p></blockquote><h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p><img src="/img/PatternDesign/15_01.png" alt="结构"></p><h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  状态快照</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Memento</span>&#123;</span></span><br><span class="line">    string state;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Memento</span>(<span class="keyword">const</span> string&amp; s):<span class="built_in">state</span>(s)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">string <span class="title">getState</span><span class="params">()</span><span class="keyword">const</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> state;</span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setState</span><span class="params">(<span class="keyword">const</span> string&amp; s)</span></span>&#123;</span><br><span class="line">        state = s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Originator</span>&#123;</span></span><br><span class="line">    string state;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Originator</span>()&#123;&#125;</span><br><span class="line">    Memento createMemento&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Memento</span>(state);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setMemento</span><span class="params">(Memento memento)</span></span>&#123;</span><br><span class="line">        state = memento.<span class="built_in">getState</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Originator originator;</span><br><span class="line">    <span class="comment">//捕获对象状态，存储快照</span></span><br><span class="line">    Memento m = originator.<span class="built_in">createMemento</span>();</span><br><span class="line">    <span class="comment">//恢复快照</span></span><br><span class="line">    originator.<span class="built_in">setMemento</span>(m);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol><li>备忘录(Memento)存储原发器(Originator)对象的内部状态，在需要时恢复原发器状态。</li><li>Memento模式的核心是信息隐藏，即Originator需要向外接隐藏信息，保持其封装性。但同时又需要将状态保持到外界(Memento) 。</li><li>由于现代语言运行时（如C#、Java等）都具有相当的对象序列化支持，因此往往采用效率较高、又较容易正确实现的序列化方案来买现Memento模式。</li></ol><h2 id="“状态变化”模式"><a href="#“状态变化”模式" class="headerlink" title="“状态变化”模式"></a>“状态变化”模式</h2><blockquote><p>在组件构建过程中，某些对象的状态经常面临变化，如何对这些变化进行有效的管理?同时又维持高层模块的稳定?“状态变化”模式为这一问题提供了一种解决方案。</p></blockquote><h3 id="典型模式"><a href="#典型模式" class="headerlink" title="典型模式"></a>典型模式</h3><ol><li><a href="/2021/11/16/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F14/">State</a>    </li><li><a href="/2021/11/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F15/">Memento</a> </li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;设计动机&quot;&gt;&lt;a href=&quot;#设计动机&quot; class=&quot;headerlink&quot; title=&quot;设计动机&quot;&gt;&lt;/a&gt;设计动机&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;在软件构建过程中，某些对象的状态在转换过程中，可能由于某种需要，要求程序能够回溯到对象之前处于某个点时的状态。如</summary>
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://blog.hellowei.ga/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://blog.hellowei.ga/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>设计模式(十三)-State</title>
@@ -494,32 +519,6 @@
     <category term="Windows" scheme="https://blog.hellowei.ga/tags/Windows/"/>
     
     <category term="proxy" scheme="https://blog.hellowei.ga/tags/proxy/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>&gt;/dev/null 2&gt;&amp;1详解</title>
-    <link href="https://blog.hellowei.ga/2021/10/19/dev-null-2-1%E8%AF%A6%E8%A7%A3/"/>
-    <id>https://blog.hellowei.ga/2021/10/19/dev-null-2-1%E8%AF%A6%E8%A7%A3/</id>
-    <published>2021-10-19T14:16:48.000Z</published>
-    <updated>2021-10-23T06:23:17.309Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1-shell输入输出重定向"><a href="#1-shell输入输出重定向" class="headerlink" title="1.shell输入输出重定向"></a>1.shell输入输出重定向</h3><p>大多数 UNIX 系统命令从你的终端接受输入并将所产生的输出发送回​​到您的终端。一个命令通常从一个叫标准输入的地方读取输入，默认情况下，这恰好是你的终端。同样，一个命令通常将其输出写入到标准输出，默认情况下，这也是你的终端。</p><p>一般情况下，每个 Unix/Linux 命令运行时都会打开三个文件：</p><ul><li>标准输入文件(stdin)：stdin的文件描述符为0，Unix程序默认从stdin读取数据。</li><li>标准输出文件(stdout)：stdout 的文件描述符为1，Unix程序默认向stdout输出数据。</li><li>标准错误文件(stderr)：stderr的文件描述符为2，Unix程序会向stderr流中写入错误信息。</li></ul><p>重定向命令列表如下：</p><table><thead><tr><th align="left">命令</th><th>说明</th></tr></thead><tbody><tr><td align="left">command &gt; file</td><td>将输出重定向到 file。</td></tr><tr><td align="left">command &lt; file</td><td>将输入重定向到 file。</td></tr><tr><td align="left">command &gt;&gt; file</td><td>将输出以追加的方式重定向到 file。</td></tr><tr><td align="left">n &gt; file</td><td>将文件描述符为 n 的文件重定向到 file。</td></tr><tr><td align="left">n &gt;&gt; file</td><td>将文件描述符为 n 的文件以追加的方式重定向到 file。</td></tr><tr><td align="left">n &gt;&amp; m</td><td>将输出文件 m 和 n 合并。</td></tr><tr><td align="left">n &lt;&amp; m</td><td>将输入文件 m 和 n 合并。</td></tr><tr><td align="left">&lt;&lt; tag</td><td>将开始标记 tag 和结束标记 tag 之间的内容作为输入。</td></tr></tbody></table><h3 id="2-dev-null-文件"><a href="#2-dev-null-文件" class="headerlink" title="2./dev/null 文件"></a>2./dev/null 文件</h3><p>/dev/null 是一个特殊的文件，写入到它的内容都会被丢弃；如果尝试从该文件读取内容，那么什么也读不到。但是 /dev/null 文件非常有用，将命令的输出重定向到它，会起到”禁止输出”的效果。如果希望屏蔽stdout 和stderr,可以这样写</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">command &gt; /dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure><p>注意：0 是标准输入（STDIN），1 是标准输出（STDOUT），2 是标准错误输出（STDERR）。</p><p>这里的 2 和 &gt; 之间不可以有空格，2&gt; 是一体的时候才表示错误输出。</p><h3 id="3-dev-null-2-gt-amp-1详解"><a href="#3-dev-null-2-gt-amp-1详解" class="headerlink" title="3./dev/null 2&gt;&amp;1详解"></a>3./dev/null 2&gt;&amp;1详解</h3><p>&amp; 表示等同于的意思，2&gt;&amp;1，表示2的输出重定向等同于1 </p><p>1 表示stdout标准输出，系统默认值是1，所以”&gt;/dev/null”等同于 “1&gt;/dev/null”</p><p>那么/dev/null 2&gt;&amp;1语句执行过程为：</p><p><code>1&gt;/dev/null </code>：首先表示标准输出重定向到空设备文件，也就是不输出任何信息到终端，说白了就是不显示任何信息。</p><p><code>2&gt;&amp;1 </code>：接着，标准错误输出重定向 到 标准输出，因为之前标准输出已经重定向到了空设备文件，所以标准错误输出也重定向到空设备文件</p><p>最常用的方式有：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">command &gt; file 2&gt;file</span><br><span class="line"></span><br><span class="line">command &gt; file 2&gt;&amp;1</span><br></pre></td></tr></table></figure><p>不同之处<br>1.command &gt; file 2&gt;file 的意思是将命令所产生的标准输出信息,和错误的输出信息送到file 中.command &gt; file 2&gt;file 这样的写法,stdout和stderr都直接送到file中, file会被打开两次,这样stdout和stderr会互相覆盖,这样写相当使用了FD1和FD2两个同时去抢占file 的管道。<br>2.command &gt;file 2&gt;&amp;1 这条命令就将stdout直接送向file, stderr 继承了FD1管道后,再被送往file,此时,file 只被打开了一次,也只使用了一个管道FD1,它包括了stdout和stderr的内容。</p><p>从IO效率上,前一条命令的效率要比后面一条的命令效率要低所以在编写shell脚本的时候,较多的时候我们会command &gt; file 2&gt;&amp;1 这样的写法。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;1-shell输入输出重定向&quot;&gt;&lt;a href=&quot;#1-shell输入输出重定向&quot; class=&quot;headerlink&quot; title=&quot;1.shell输入输出重定向&quot;&gt;&lt;/a&gt;1.shell输入输出重定向&lt;/h3&gt;&lt;p&gt;大多数 UNIX 系统命令从你的终端接受输入</summary>
-      
-    
-    
-    
-    <category term="Linux" scheme="https://blog.hellowei.ga/categories/Linux/"/>
-    
-    
-    <category term="Linux" scheme="https://blog.hellowei.ga/tags/Linux/"/>
-    
-    <category term="Shell" scheme="https://blog.hellowei.ga/tags/Shell/"/>
     
   </entry>
   
