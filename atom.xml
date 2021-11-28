@@ -6,7 +6,7 @@
   <link href="https://blog.hellowei.ga/atom.xml" rel="self"/>
   
   <link href="https://blog.hellowei.ga/"/>
-  <updated>2021-11-22T16:00:03.149Z</updated>
+  <updated>2021-11-28T08:00:02.463Z</updated>
   <id>https://blog.hellowei.ga/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>docker容器cron任务读取环境变量</title>
+    <link href="https://blog.hellowei.ga/2021/11/28/docker%E5%AE%B9%E5%99%A8cron%E4%BB%BB%E5%8A%A1%E8%AF%BB%E5%8F%96%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/"/>
+    <id>https://blog.hellowei.ga/2021/11/28/docker%E5%AE%B9%E5%99%A8cron%E4%BB%BB%E5%8A%A1%E8%AF%BB%E5%8F%96%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</id>
+    <published>2021-11-28T03:13:18.000Z</published>
+    <updated>2021-11-28T08:00:02.463Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>​    因为<em>cron</em>从非交互式、非登录 shell 运行作业。所以当<a href="https://www.baeldung.com/cron-expressions"><em>cron</em></a>执行作业时，它不会从<a href="https://www.baeldung.com/linux/bashrc-vs-bash-profile-vs-profile"><em>~/.bashrc</em></a><a href="https://www.baeldung.com/linux/bashrc-vs-bash-profile-vs-profile">、</a><a href="https://www.baeldung.com/linux/bashrc-vs-bash-profile-vs-profile"><em>~/.bash_profile</em></a><a href="https://www.baeldung.com/linux/bashrc-vs-bash-profile-vs-profile">、</a><a href="https://www.baeldung.com/linux/bashrc-vs-bash-profile-vs-profile"><em>/etc/profile 等</em></a>文件加载<a href="https://www.baeldung.com/linux/environment-variables">环境变量</a>。当我们需要使用容器内的环境变量作为参数定时运行shell脚本时，由于无法读取环境变量导致运行失败。</p><p>以下为docker容器的解决方案</p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><ol><li><p>保存容器环境变量(可以写在entrypoint中)</p><p>通过declare命令和grep命令捕获你所需要的环境变量至/container.env文件中(当然，这个文件你可以随意定义)</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">declare -p | gerp -E &#x27;VAR1|VAR2|VAR2&#x27; &gt; /container.env</span><br></pre></td></tr></table></figure></li><li><p>运行时载入环境变量配置文件</p><p>有两种方式载入。</p><ol><li><p>通过需要执行的shell脚本载入，只需在shell脚本前加入即可</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 读取容器设定的环境变量</span></span><br><span class="line">source /container.env</span><br><span class="line"></span><br></pre></td></tr></table></figure></li><li><p>直接在crontab中载入</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SHELL=/bin/bash</span><br><span class="line">BASH_ENV=/container.env</span><br><span class="line">* * * * * root /test-cron.sh</span><br></pre></td></tr></table></figure></li></ol></li></ol><h2 id="cron注意事项"><a href="#cron注意事项" class="headerlink" title="cron注意事项"></a>cron注意事项</h2><p>不要假定cron知道所需要的特殊环境，它其实并不知道。所以你要保证在shelll脚本中提供所有必要的路径和环境变量，除了一些自动设置的全局变量</p><ol><li>脚本中涉及文件路径时写全局路径(如python 通过which python 定位其全局路径再填入)</li><li>脚本执行其他环境变量时，通过source命令引入环境变量</li><li>当手动执行脚本OK，但是crontab执行失败时。很有可能环境变量出问题</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;​    因为&lt;em&gt;cron&lt;/em&gt;从非交互式、非登录 shell 运行作业。所以当&lt;a href=&quot;https://www.baeld</summary>
+      
+    
+    
+    
+    <category term="Docker" scheme="https://blog.hellowei.ga/categories/Docker/"/>
+    
+    
+    <category term="docker" scheme="https://blog.hellowei.ga/tags/docker/"/>
+    
+    <category term="cron" scheme="https://blog.hellowei.ga/tags/cron/"/>
+    
+    <category term="环境变量" scheme="https://blog.hellowei.ga/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>设计模式(十五)-“数据结构”模式</title>
@@ -490,32 +518,6 @@
     
     
     <category term="C++" scheme="https://blog.hellowei.ga/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git之ssh连接多个远程仓库</title>
-    <link href="https://blog.hellowei.ga/2021/10/21/Git%E4%B9%8Bssh%E8%BF%9E%E6%8E%A5%E5%A4%9A%E4%B8%AA%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/"/>
-    <id>https://blog.hellowei.ga/2021/10/21/Git%E4%B9%8Bssh%E8%BF%9E%E6%8E%A5%E5%A4%9A%E4%B8%AA%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/</id>
-    <published>2021-10-21T14:34:38.000Z</published>
-    <updated>2021-10-23T06:23:17.309Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="本地仓库ssh连接多个远程仓库"><a href="#本地仓库ssh连接多个远程仓库" class="headerlink" title="本地仓库ssh连接多个远程仓库"></a>本地仓库ssh连接多个远程仓库</h3><p>由于GitHub不同的两个账户不可以配置相同的公钥，因此本地仓库ssh连接多个远程仓库必须生成不同的密钥</p><h4 id="1-生成密钥"><a href="#1-生成密钥" class="headerlink" title="1.生成密钥"></a>1.生成密钥</h4><p>对于使用ssh连接远程仓库，需要生成非对称密钥并将公钥添加到远程仓库中</p><pre><code><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">ssh-keygen -t rsa -f ~/.ssh/&lt;filename&gt; -C &quot;yourmail@xxx.com&quot;</span><br></pre></td></tr></table></figure></code></pre><p>通常<code>id_rsa</code>和<code>id_rsa.pub</code>是默认密钥，额外生成的密钥需要自定义</p><h4 id="2-配置ssh的config"><a href="#2-配置ssh的config" class="headerlink" title="2.配置ssh的config"></a>2.配置ssh的config</h4><ol><li><p>创建config文件</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">touch config</span><br><span class="line">vim config</span><br></pre></td></tr></table></figure></li><li><p>编辑配置文件，使不同密钥指向不同远程仓库</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 第一个账号，默认使用的账号</span></span><br><span class="line">Host github.com</span><br><span class="line">HostName github.com</span><br><span class="line">User git</span><br><span class="line">IdentityFile ~/.ssh/id_rsa</span><br><span class="line"><span class="meta">#</span><span class="bash"> 第二个账号</span></span><br><span class="line">Host second.github.com  # second为前缀名，可以任意设置</span><br><span class="line">HostName github.com</span><br><span class="line">User git</span><br><span class="line">IdentityFile ~/.ssh/&lt;filename&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">原理分析</span><br><span class="line">1.ssh 客户端是通过类似 git@github.com:githubUserName/repoName.git ** 的地址来识别使用本地的哪个私钥的，地址中的 User 是@前面的git， Host 是@后面的github.com。</span><br><span class="line">2.如果所有账号的 User 和 Host 都为 git 和 github.com，那么就只能使用一个私钥。所以要对User 和 Host 进行配置，让每个账号使用自己的 Host，每个 Host 的域名做 CNAME 解析到 github.com，如上面配置中的Host second.github.com。</span><br><span class="line">3.配置了别名之后，新的地址就是git@second.github.com:githubUserName/repName.git**（在添加远程仓库时使用）。</span><br><span class="line">这样 ssh 在连接时就可以区别不同的账号了</span><br></pre></td></tr></table></figure></li><li><p>清空本地缓存，添加新的ssh密钥到SSH agenth中</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh-add -D</span><br><span class="line">ssh-add id_rsa</span><br><span class="line">ssh-add &lt;filename&gt;</span><br></pre></td></tr></table></figure></li><li><p>测试ssh链接</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br><span class="line">ssh -T git@second.github.com</span><br><span class="line"><span class="meta">#</span><span class="bash"> xxx! You’ve successfully authenticated, but GitHub does not provide bash access.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 出现上述提示，连接成功</span></span><br></pre></td></tr></table></figure></li></ol><h4 id="3-仓库配置"><a href="#3-仓库配置" class="headerlink" title="3. 仓库配置"></a>3. 仓库配置</h4><ol><li><p>设置远程仓库即可，注意对应，比如说<filename>这个公钥放在了第二个仓库，就要注意修改host</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add &lt;remotename&gt; git@second.github.com:githubUserName/repName.git</span><br></pre></td></tr></table></figure></li></ol>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;本地仓库ssh连接多个远程仓库&quot;&gt;&lt;a href=&quot;#本地仓库ssh连接多个远程仓库&quot; class=&quot;headerlink&quot; title=&quot;本地仓库ssh连接多个远程仓库&quot;&gt;&lt;/a&gt;本地仓库ssh连接多个远程仓库&lt;/h3&gt;&lt;p&gt;由于GitHub不同的两个账户不可以</summary>
-      
-    
-    
-    
-    <category term="Git" scheme="https://blog.hellowei.ga/categories/Git/"/>
-    
-    
-    <category term="Git" scheme="https://blog.hellowei.ga/tags/Git/"/>
-    
-    <category term="Ssh" scheme="https://blog.hellowei.ga/tags/Ssh/"/>
     
   </entry>
   
