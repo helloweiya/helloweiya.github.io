@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>排序算法03</title>
+      <link href="/2021/12/09/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%9503/"/>
+      <url>/2021/12/09/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%9503/</url>
+      
+        <content type="html"><![CDATA[<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>堆排序(Heapsort)是指利用堆积树（堆）这种数据结构所设计的一种排序算法，它是选择排序的一种。可以利用数组的特点快速定位指定索引的元素。堆排序就是把最大堆堆顶的最大数取出，将剩余的堆继续调整为最大堆，再次将堆顶的最大数取出，这个过程持续到剩余数只有一个时结束。</p><h4 id="堆的概念"><a href="#堆的概念" class="headerlink" title="堆的概念"></a>堆的概念</h4><p>堆是一种完全二叉树，这使得堆(完全二叉树)可以用数组进行表示。如下图每一个节点对应数组的一个元素且可以通过数组下标来判断节点间位置。<br>对于给定下标为<code>i</code>的数组中的数组,其该元素所对应的父节点、孩子节点下标为(以1作为开始)：<br>父节点：    <code>Parent(i) = floor(i/2)</code><br>左孩子节点： <code>Left(i) = 2*i</code><br>右孩子节点:  <code>Right(i)= 2*i +1</code><br><img src="/img/algorithm/heap.png" alt="heap"></p><ul><li>最大堆即最大元素值出现在根结点，堆中每个父节点的元素值都大于等于其孩子结点 用于<strong>升序</strong>排列</li><li>最小堆中的最小元素值出现在根结点，堆中每个父节点的元素值都小于等于其孩子结点 用于<strong>降序</strong>排列</li></ul><h4 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h4><p>堆排序就是把最大堆堆顶的最大数取出，将剩余的堆继续调整为最大堆，再次将堆顶的最大数取出，这个过程持续到剩余数只有一个时结束。在堆中定义以下几种操作</p><ul><li>最大堆调整（Max-Heapify）：将堆的末端子节点作调整，使得子节点永远小于父节点</li><li>创建最大堆（Build-Max-Heap）：将堆所有数据重新排序，使其成为最大堆</li><li>移除位在第一个数据的根节点，并做最大堆调整的递归运算<br>需要注意的一个问题是：数组都是 Zero-Based，这就意味着我们的堆数据结构模型要发生改变即<br>对于给定下标为<code>i</code>的数组中的数组,其该元素所对应的父节点、孩子节点下标为(以0作为开始)：<br>父节点：    <code>Parent(i) = floor((i-1)/2)</code><br>左孩子节点： <code>Left(i) = 2*i+1</code><br>右孩子节点:  <code>Right(i)= 2*(i+1)</code></li></ul><p>对于利用堆排序，只关心两个问题</p><ol><li>给定一个无序数组，如何建立堆</li><li>删除堆顶元素，如何调整成为新的堆</li></ol><p><img src="/img/algorithm/buildHeap.gif" alt="buildHeap"><br><img src="/img/algorithm/adjustHeap.gif" alt="adjustHeap"></p><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">heapSort</span><span class="params">(<span class="keyword">int</span> arr[],<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lastIndex = len<span class="number">-1</span>;</span><br><span class="line">    <span class="comment">//初始化最大堆</span></span><br><span class="line">    <span class="comment">//从第一个非叶子节点开始</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="built_in">getParentIndex</span>(last); i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">        <span class="built_in">adjustHeap</span>(i,lastIndex);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//删除堆顶元素,重新调整堆</span></span><br><span class="line">    <span class="keyword">while</span>(lastIndex&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">swap</span>(arr[<span class="number">0</span>],arr[last]);</span><br><span class="line">        last--;</span><br><span class="line">        <span class="built_in">adjustHeap</span>(<span class="number">0</span>,last);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 排序 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>排序算法(二)——希尔、快速、归并</title>
       <link href="/2021/12/07/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%9502/"/>
       <url>/2021/12/07/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%9502/</url>
