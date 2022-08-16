@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>C++Primer读书笔记(一)-访问控制与继承 | Hexo</title>
+  <meta name="description" content="​	每个类通过成员访问运算符控制其成员对于派生类和类的用户来说是否是可访问的。 受保护的成员 ​	一个类使用protected关键字来声明那些希望与派生类分享但不想被其他用户访问的成员。可以说protected是夹在private成员和public成员的中和产物。主要有以下三条性质  受保护成员对于类的用户者不可访问 受保护成员对于派生类的成员和友元是可访问 派生类的成员或者友元只能通过派生类对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++Primer读书笔记(一)-访问控制与继承">
+<meta property="og:url" content="https://blog.hellowei.ga/2021/10/27/C-Primer%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%BB%A7%E6%89%BF/index.html">
+<meta property="og:site_name" content="HelloWei">
+<meta property="og:description" content="​	每个类通过成员访问运算符控制其成员对于派生类和类的用户来说是否是可访问的。 受保护的成员 ​	一个类使用protected关键字来声明那些希望与派生类分享但不想被其他用户访问的成员。可以说protected是夹在private成员和public成员的中和产物。主要有以下三条性质  受保护成员对于类的用户者不可访问 受保护成员对于派生类的成员和友元是可访问 派生类的成员或者友元只能通过派生类对象">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-27T12:35:23.000Z">
+<meta property="article:modified_time" content="2022-08-16T13:34:42.496Z">
+<meta property="article:author" content="不吃西柚">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="读书笔记">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://blog.hellowei.ga/2021/10/27/C-Primer%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%BB%A7%E6%89%BF/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="HelloWei" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/helloweiya" target="_blank">
+          <img class="img-circle img-rotate" src="/img/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">不吃西柚</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">System Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C-Primer%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">C++Primer读书笔记</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/proxy/">proxy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><span class="category-list-count">16</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ssh/" rel="tag">Ssh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cron/" rel="tag">cron</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/priority-queue/" rel="tag">priority_queue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/proxy/" rel="tag">proxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" rel="tag">环境变量</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E4%BA%A7%E8%80%85/" rel="tag">生产者</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" rel="tag">背包问题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/C/" style="font-size: 13.67px;">C++</a> <a href="/tags/Git/" style="font-size: 13px;">Git</a> <a href="/tags/Linux/" style="font-size: 13px;">Linux</a> <a href="/tags/Shell/" style="font-size: 13px;">Shell</a> <a href="/tags/Ssh/" style="font-size: 13px;">Ssh</a> <a href="/tags/Windows/" style="font-size: 13px;">Windows</a> <a href="/tags/cron/" style="font-size: 13px;">cron</a> <a href="/tags/docker/" style="font-size: 13px;">docker</a> <a href="/tags/priority-queue/" style="font-size: 13px;">priority_queue</a> <a href="/tags/proxy/" style="font-size: 13px;">proxy</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 13.33px;">排序</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 13px;">操作系统</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" style="font-size: 13px;">环境变量</a> <a href="/tags/%E7%94%9F%E4%BA%A7%E8%80%85/" style="font-size: 13px;">生产者</a> <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" style="font-size: 13px;">背包问题</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 14px;">设计模式</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 13px;">读书笔记</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Linux/">Linux</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/08/16/Linux%E7%BB%9F%E8%AE%A1%E6%96%87%E4%BB%B6%E6%88%96%E6%96%87%E4%BB%B6%E5%A4%B9%E6%95%B0%E9%87%8F/" class="title">Linux统计文件或文件夹数量</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-08-16T13:34:42.496Z" itemprop="datePublished">2022-08-16</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/26/priority-queue%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="title">C++ priority_queue使用方法</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-26T10:58:37.000Z" itemprop="datePublished">2022-02-26</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/C/">C++</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/25/%E9%9A%8F%E6%9C%BA%E6%95%B0/" class="title">C++11随机数</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-25T11:51:13.000Z" itemprop="datePublished">2022-02-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/C/">C++</a>
+              </p>
+              <p class="item-title">
+                <a href="/2021/12/27/c-%E5%88%86%E5%89%B2%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="title">c++分割字符串</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-12-27T03:05:43.000Z" itemprop="datePublished">2021-12-27</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+              </p>
+              <p class="item-title">
+                <a href="/2021/12/23/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" class="title">背包问题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-12-23T06:51:02.000Z" itemprop="datePublished">2021-12-23</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-C-Primer读书笔记-访问控制与继承" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C++Primer读书笔记(一)-访问控制与继承
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/10/27/C-Primer%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%BB%A7%E6%89%BF/" class="article-date">
+	  <time datetime="2021-10-27T12:35:23.000Z" itemprop="datePublished">2021-10-27</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/C-Primer%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">C++Primer读书笔记</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/C/" rel="tag">C++</a>, <a class="article-tag-link-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/10/27/C-Primer%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%BB%A7%E6%89%BF/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>​	每个类通过成员<strong>访问运算符</strong>控制其成员对于派生类和类的用户来说是否是可访问的。</p>
+<h3 id="受保护的成员">受保护的成员</h3>
+<p>​	一个类使用<code>protected</code>关键字来声明那些希望与派生类分享但不想被其他用户访问的成员。可以说protected是夹在private成员和public成员的中和产物。主要有以下三条性质</p>
+<ol>
+<li>受保护成员对于类的用户者不可访问</li>
+<li>受保护成员对于派生类的成员和友元是可访问</li>
+<li>派生类的成员或者友元只能通过<strong>派生类对象</strong>来访问基类的受保护成员，派生类对于一个<strong>基类对象</strong>中的受保护成员没有访问权限。即派生类的成员和友元只能访问<u>派生类对象中的基类部分的受保护成员</u>(管好自家)，而对一个普通基类对象中的受保护成员是没有访问权限的。</li>
+</ol>
+<p>第三点举例</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义基类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="keyword">int</span> prot_mem;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//定义派生类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sneaky</span>:</span> <span class="keyword">public</span> Base&#123;</span><br><span class="line">    <span class="function"><span class="keyword">friend</span> <span class="keyword">void</span> <span class="title">clobber</span><span class="params">(Sneaky&amp;)</span></span>;	<span class="comment">//能访问Sneaky::prot_mem</span></span><br><span class="line">    <span class="function"><span class="keyword">friend</span> <span class="keyword">void</span> <span class="title">clobber</span><span class="params">(Base&amp;)</span></span>;   	<span class="comment">//不能访问Base::proe_mem 对于一个基类对象中的受保护成员没有访问权限</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">类本身</th>
+<th style="text-align:center">类的实例化对象(类的用户)</th>
+<th style="text-align:center">类的派生</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>public成员</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td>private成员</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+</tr>
+<tr>
+<td>protected成员</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">√</td>
+</tr>
+</tbody>
+</table>
+<p>√表示可访问，X表示不可访问</p>
+<h3 id="三种继承方式——公有、私有和受保护继承">三种继承方式——公有、私有和受保护继承</h3>
+<p>​	不加声明，class默认私有继承，struct默认公有继承</p>
+<p>​	类对其继承而来的成员的访问权限收到两个因素影响：1.基类中的成员访问符 2. 派生列表的访问说明符</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义基类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pub_mem</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">char</span> priv_mem;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="keyword">int</span> prop_men;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义公有派生</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pub_Derv</span>:</span><span class="keyword">public</span> Base&#123;</span><br><span class="line">  <span class="comment">//正确，可访问基类部分的受保护成员</span></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> prop_men;&#125;</span><br><span class="line">    </span><br><span class="line">  <span class="comment">//错误，不能访问基类部分的私有成员</span></span><br><span class="line">  <span class="comment">//char g()&#123;return priv_mem;&#125;    </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义私有派生</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pri_Derv</span>:</span><span class="keyword">private</span> Base&#123;</span><br><span class="line">  <span class="comment">//正确，派生列表中访问说明符不影响派生类对于基类部分的访问权限</span></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">f1</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> prop_men;&#125;      </span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>​	派生列表的访问说明符不影响派生类对基类部分成员的访问权限，这只与基类中的成员访问符有关，派生列表中的访问说明符的目的是</p>
+<p>控制派生类用户(包括派生类的派生)对于<strong>基类成员</strong>的访问权限</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Pub_Derv d1;</span><br><span class="line">Pri_Derv d2;</span><br><span class="line">d1.<span class="built_in">pub_mem</span>();	<span class="comment">//正确</span></span><br><span class="line"><span class="comment">//d2.pub_mem()  //错误，经过私有继承后，基类中的公有成员对于派生类用户不可访问</span></span><br></pre></td></tr></table></figure>
+<h3 id="派生类向基类转换的可访问性">派生类向基类转换的可访问性</h3>
+<p>派生类向基类转换: 基类的指针指向派生类或者基类的引用绑定到派生类对象(实际上是指向或者绑定到派生类的基类部分)</p>
+<ul>
+<li>只有当派生类公有的继承基类，<strong>用户代码</strong>才能使用派生类向基类转换。私有和保护继承都不行</li>
+<li>派生类的<strong>成员函数和友元</strong>都能使用派生类向基类的转换，与继承方式无关</li>
+<li>如果派生类是公有或者保护继承基类，那么派生类的派生类的成员函数和友元可以实现派生类向其基类的转换</li>
+</ul>
+<p>类的设计小tip</p>
+<p>​	类有三种用户：类的实现者、派生类以及类的使用者。基类应该将接口成员声明为公有；同时将实现部分分成两组：1.声明为<code>protected</code>供派生类访问 2. 声明为<code>private</code>共基类自身和基类的友元访问</p>
+<table>
+<thead>
+<tr>
+<th>类的用户</th>
+<th>访问权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>类的实现者</td>
+<td>全部</td>
+</tr>
+<tr>
+<td>类的使用者</td>
+<td>类的公共接口</td>
+</tr>
+<tr>
+<td>派生类</td>
+<td>类的保护成员</td>
+</tr>
+</tbody>
+</table>
+<h3 id="友元与继承">友元与继承</h3>
+<p>​	友元关系不能传递也不能继承，<strong>每个类负责自己的成员的访问权限</strong>。基类的友元只能访问基类，不能访问它的派生类本身成员，但是可以访问派生类中的基类部分的成员。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">    <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">Pal</span>;</span>	<span class="comment">//	友元声明</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pal</span>&#123;</span></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(Base b)</span></span>&#123;<span class="keyword">return</span> b.prot_mem;&#125;	<span class="comment">//正确</span></span><br><span class="line"><span class="comment">//int f2(Sneaky s)&#123;return s.j;&#125;	//错误 不能访问派生类本身成员</span></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">f3</span><span class="params">(Sneaky s)</span></span>&#123;<span class="keyword">return</span> s.prot_mem;&#125; <span class="comment">//正确,可以访问派生类中的基类部分的成员</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://blog.hellowei.ga/2021/10/27/C-Primer%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%BB%A7%E6%89%BF/" title="C++Primer读书笔记(一)-访问控制与继承" target="_blank" rel="external">https://blog.hellowei.ga/2021/10/27/C-Primer读书笔记-访问控制与继承/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/helloweiya" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/img/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/helloweiya" target="_blank"><span class="text-dark">不吃西柚</span><small class="ml-1x">System Developer &amp; Designer</small></a></h3>
+        <div>不为无益之事，何以遣有涯之生</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/11/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F01/" title="设计模式(一)-面向对象设计原则"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/10/26/MoreEffectiveC/" title="MoreEffectiveC++(一)"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>MoreEffectiveC++(一) | Hexo</title>
+  <meta name="description" content="一、基础 Basics 条款1 指针(pointer)与引用(reference)的选择 1.pointer可以为空，但reference不能 因此对于一个变量如果总是代表一个对象，则应该该考虑为reference 且使用reference不需要测试其有效性，效率更高。使用pointer前需判断是否为空 2.pointer可以重新被赋值，但reference总是代表初始化的对象 当存在不指向任何对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MoreEffectiveC++(一)">
+<meta property="og:url" content="https://blog.hellowei.ga/2021/10/26/MoreEffectiveC/index.html">
+<meta property="og:site_name" content="HelloWei">
+<meta property="og:description" content="一、基础 Basics 条款1 指针(pointer)与引用(reference)的选择 1.pointer可以为空，但reference不能 因此对于一个变量如果总是代表一个对象，则应该该考虑为reference 且使用reference不需要测试其有效性，效率更高。使用pointer前需判断是否为空 2.pointer可以重新被赋值，但reference总是代表初始化的对象 当存在不指向任何对">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-26T00:55:31.000Z">
+<meta property="article:modified_time" content="2022-08-16T13:34:42.497Z">
+<meta property="article:author" content="不吃西柚">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://blog.hellowei.ga/2021/10/26/MoreEffectiveC/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="HelloWei" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/helloweiya" target="_blank">
+          <img class="img-circle img-rotate" src="/img/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">不吃西柚</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">System Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C-Primer%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">C++Primer读书笔记</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/proxy/">proxy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><span class="category-list-count">16</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ssh/" rel="tag">Ssh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cron/" rel="tag">cron</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/priority-queue/" rel="tag">priority_queue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/proxy/" rel="tag">proxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" rel="tag">环境变量</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E4%BA%A7%E8%80%85/" rel="tag">生产者</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" rel="tag">背包问题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/C/" style="font-size: 13.67px;">C++</a> <a href="/tags/Git/" style="font-size: 13px;">Git</a> <a href="/tags/Linux/" style="font-size: 13px;">Linux</a> <a href="/tags/Shell/" style="font-size: 13px;">Shell</a> <a href="/tags/Ssh/" style="font-size: 13px;">Ssh</a> <a href="/tags/Windows/" style="font-size: 13px;">Windows</a> <a href="/tags/cron/" style="font-size: 13px;">cron</a> <a href="/tags/docker/" style="font-size: 13px;">docker</a> <a href="/tags/priority-queue/" style="font-size: 13px;">priority_queue</a> <a href="/tags/proxy/" style="font-size: 13px;">proxy</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 13.33px;">排序</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 13px;">操作系统</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" style="font-size: 13px;">环境变量</a> <a href="/tags/%E7%94%9F%E4%BA%A7%E8%80%85/" style="font-size: 13px;">生产者</a> <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" style="font-size: 13px;">背包问题</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 14px;">设计模式</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 13px;">读书笔记</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Linux/">Linux</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/08/16/Linux%E7%BB%9F%E8%AE%A1%E6%96%87%E4%BB%B6%E6%88%96%E6%96%87%E4%BB%B6%E5%A4%B9%E6%95%B0%E9%87%8F/" class="title">Linux统计文件或文件夹数量</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-08-16T13:34:42.496Z" itemprop="datePublished">2022-08-16</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/26/priority-queue%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="title">C++ priority_queue使用方法</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-26T10:58:37.000Z" itemprop="datePublished">2022-02-26</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/C/">C++</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/25/%E9%9A%8F%E6%9C%BA%E6%95%B0/" class="title">C++11随机数</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-25T11:51:13.000Z" itemprop="datePublished">2022-02-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/C/">C++</a>
+              </p>
+              <p class="item-title">
+                <a href="/2021/12/27/c-%E5%88%86%E5%89%B2%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="title">c++分割字符串</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-12-27T03:05:43.000Z" itemprop="datePublished">2021-12-27</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+              </p>
+              <p class="item-title">
+                <a href="/2021/12/23/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" class="title">背包问题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-12-23T06:51:02.000Z" itemprop="datePublished">2021-12-23</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-MoreEffectiveC" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MoreEffectiveC++(一)
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/10/26/MoreEffectiveC/" class="article-date">
+	  <time datetime="2021-10-26T00:55:31.000Z" itemprop="datePublished">2021-10-26</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/C/">C++</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/C/" rel="tag">C++</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/10/26/MoreEffectiveC/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1>一、基础 Basics</h1>
+<h2 id="条款1-指针-pointer-与引用-reference-的选择">条款1 指针(pointer)与引用(reference)的选择</h2>
+<p>1.pointer可以为空，但reference不能</p>
+<p>因此对于一个变量如果总是代表一个对象，则应该该考虑为reference</p>
+<p>且使用reference不需要测试其有效性，效率更高。使用pointer前需判断是否为空</p>
+<p>2.pointer可以重新被赋值，但reference总是代表初始化的对象</p>
+<p>当存在不指向任何对象或者指向对象有变化时应该使用pointer</p>
+<p>3.在实现操作符重载是，常常返回类型为reference，可以作为左值</p>
+<h2 id="条款2-使用c-转型操作符">条款2 使用c++转型操作符</h2>
+<p>4个新的转型操作符(cast operators):<code>static_cast,const_cast,dynamic_cast,reinterpret_cast</code></p>
+<p>写法为: <code>static_cast&lt;type&gt;(expression)</code> 注意在<code>static_cast&lt;vector&lt;int&gt; &gt;</code>最后两个<code>&gt;</code>最好有空格，防止编译器认为是<code>&gt;&gt;</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">操作符</th>
+<th>作用</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>static_cast</code></td>
+<td>用于基本的类型转换</td>
+<td>不涉及继承机制</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>const_cast</code></td>
+<td>用于改变表达式的常量属性，去掉const性质</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>dynamic_cast</code></td>
+<td>用于执行继承体系中安全向下或者跨系转型动作(将指向base的指针转换成指向derived)</td>
+<td>对于pointer，失败返回null，对于reference，失败返回exception；只能协助巡航在继承体系中，无法应用在缺乏虚函数的类型上</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>reinterpret_cast</code></td>
+<td>最常用于转换“函数指针”</td>
+<td>与编译平台有关，不具有移植性</td>
+</tr>
+</tbody>
+</table>
+<h2 id="条款3-不以多态方式处理数组">条款3 不以多态方式处理数组</h2>
+<p>对于数组<code>array</code>，数组名也为首地址。<code>array[i]</code> === <code>*(array+i)</code></p>
+<p><code>array</code>与<code>array+i</code>内存之间的距离一定是<code>i*sizeof(item)</code></p>
+<p>编译器对于数组中对象的大小在声明时定下，导致多态时是无法正确定位实际的内存距离</p>
+<h2 id="条款4-非必要不提供默认构造函数">条款4 非必要不提供默认构造函数</h2>
+<p>不提供默认构造函数会带来一下三点的不便</p>
+<ul>
+<li>不能产生类对象的数组(解决方法：1，non-heap数组，提前给定初始化的变量 2指针数组 3，<code>placement new</code>方式)</li>
+<li>不适用于基于模板的容器类，因为被实例化的<strong>目标类型</strong>需要一个默认构造函数</li>
+<li>虚基类不提供默认构造函数，派生类必须提供初始化参数</li>
+</ul>
+<p>然而，如果含有无意义成员变量的对象存在如果可以生存，那么对于大部分的成员函数都必须检测该成员变量，降低效率。</p>
+<p>如果类的构造函数能够保证对象的所有字段都被正确初始哈，那么这些测试代码、对于的处理程序所带来的时间和空间的代价可以免除，</p>
+<p>显然，默认构造函数无法带来这样的保证，那么<strong>最好避免</strong>让默认构造函数出现。</p>
+<h1>二、操作符 Operators</h1>
+<h2 id="条款5-对定制的“类型转化函数”保持警觉">条款5 对定制的“类型转化函数”保持警觉</h2>
+<p>当存在以下条件之一，便有可能发生隐式类型转换</p>
+<ul>
+<li>含有单自变量构造函数。能以单一变量成功初始化对象(利用关键词<code>explicit</code>阻止隐式转换,或采用proxy class)</li>
+<li>成员函数含有隐式类型操作函数。如 operator double()const;</li>
+</ul>
+<p>最好不提供任何类型转换函数，问题在于此类函数的调用可能超出你的预期，结果可能是不正确，不直观并且难以调试。</p>
+<p>例子：</p>
+<p>标准库程序string类并未含有**从string对象到C风格char*的隐式转换函数 **，而是需要显示调用<code>c_str</code>成员函数来执行这种转化行为</p>
+<h2 id="条款6-自增自减操作符的前置与后置">条款6 自增自减操作符的前置与后置</h2>
+<p>自增自减的重载，为了区别前置与后置只好让后置有一个int形参，编译器默认指定为0</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UPInt</span>&#123;</span></span><br><span class="line">    UPInt&amp; <span class="keyword">operator</span>++();			<span class="comment">//前置++</span></span><br><span class="line">    <span class="keyword">const</span> UPInt <span class="keyword">operator</span>++(<span class="keyword">int</span>);	<span class="comment">//后置++</span></span><br><span class="line">&#125;;</span><br><span class="line"> UPInt&amp; UPInt::<span class="keyword">operator</span>++()&#123;</span><br><span class="line">     *<span class="keyword">this</span> +=<span class="number">1</span>;     <span class="comment">//累加</span></span><br><span class="line">     <span class="keyword">return</span> *<span class="keyword">this</span>;	<span class="comment">//取出</span></span><br><span class="line"> &#125;</span><br><span class="line"><span class="keyword">const</span> UPInt UPInt::<span class="keyword">operator</span>++(<span class="keyword">int</span>)&#123;</span><br><span class="line">    UPInt oldValue = *<span class="keyword">this</span>; <span class="comment">//取出</span></span><br><span class="line">    ++(*<span class="keyword">this</span>);	<span class="comment">//累加</span></span><br><span class="line">    <span class="keyword">return</span> oldValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>前置：increment and fetch 累加然后取出，返回值是引用</p>
+<p>后置：fetch and increment 取出然后累加，返回值是一个const常量(防止i++++出现，毫无意义)</p>
+<p><strong>尽可能使用前置式</strong>  原因在于</p>
+<ul>
+<li>后置式会产生临时变量</li>
+<li>后置式一般是以前置式为基础上实现的</li>
+</ul>
+<h2 id="条款7-不要重载-操作符">条款7 不要重载<code>&amp;&amp;</code>,<code>||</code>,<code>,</code>操作符</h2>
+<p>c++对于真假表达式采用<strong>骤死式</strong>的评估方式。一旦该表达式的真假值确定后，剩余部分将不再进行计算。</p>
+<p>即使c++允许我们重载，但是<strong>函数调用式</strong>会取代<strong>骤死式</strong>，这有悖游戏规则</p>
+<p>如将<code>&amp;&amp;</code>重载，</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(expr1 &amp;&amp; expr2)</span><br><span class="line">	;</span><br><span class="line"><span class="comment">//实际编译是下列两者之一</span></span><br><span class="line"><span class="keyword">if</span>(expr1.<span class="keyword">operator</span>&amp;&amp;(expr2))  <span class="comment">//成员函数形式</span></span><br><span class="line">    ;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">operator</span>&amp;&amp;(expr1,expr2))  <span class="comment">//全局函数形式</span></span><br><span class="line">    ;</span><br></pre></td></tr></table></figure>
+<p>操作符重载的目的是让程序更容易被阅读，被撰写，被理解，而不是<s>炫技</s>或者<s>夸耀</s></p>
+<h2 id="条款8-了解new与delete">条款8 了解<code>new</code>与<code>delete</code></h2>
+<h1>三、 异常Exceptions</h1>
+<h2 id="条款9-利用析构函数避免泄漏资源">条款9 利用析构函数避免泄漏资源</h2>
+<p>实质上就是采用智能指针，不必担心内存泄漏</p>
+<p>把资源(一般是指针)封装在对象中(如智能指针这种对象)，利用这种对象的析构函数避免资源泄露</p>
+<h2 id="条款10-在构造函数内组织资源泄露">条款10 在构造函数内组织资源泄露</h2>
+<p>虽然可以在析构函数中进行资源释放，然而如果异常发生在对象的构造阶段，便不可行。</p>
+<p>原因是<u><strong>c++只会析构已构造完成的对象</strong></u>，这种机理的理由在于避免额外开销：如果需要析构未完成构造的对象，必然要记录下构造函数进行到什么程度，这势必会造成额外开销。</p>
+<p>对于指针成员变量，一律采用智能指针可有效的避免资源泄露</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://blog.hellowei.ga/2021/10/26/MoreEffectiveC/" title="MoreEffectiveC++(一)" target="_blank" rel="external">https://blog.hellowei.ga/2021/10/26/MoreEffectiveC/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/helloweiya" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/img/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/helloweiya" target="_blank"><span class="text-dark">不吃西柚</span><small class="ml-1x">System Developer &amp; Designer</small></a></h3>
+        <div>不为无益之事，何以遣有涯之生</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/10/27/C-Primer%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%BB%A7%E6%89%BF/" title="C++Primer读书笔记(一)-访问控制与继承"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/10/21/Git%E4%B9%8Bssh%E8%BF%9E%E6%8E%A5%E5%A4%9A%E4%B8%AA%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/" title="Git之ssh连接多个远程仓库"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
