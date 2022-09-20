@@ -17,23 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>设计模式(十四)-Memento | Hexo</title>
-  <meta name="description" content="设计动机  在软件构建过程中，某些对象的状态在转换过程中，可能由于某种需要，要求程序能够回溯到对象之前处于某个点时的状态。如果使用一些公有接口来让其他对象得到对象的状态，便会暴露对象的细节实现。 如何实现对象状态的良好保存与恢复?但同时又不会因此而破坏对象本身的封装性。  定义  在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可以将该对象恢复到原先保存的状态">
+  <title>Install archlinux on Thinkbook14 G4+ ARA | Hexo</title>
+  <meta name="description" content="0 前言 ​	新到的Thinkbook 14+ AMD 6800h 到手后迫不及待的试图安装双系统Win11+Archlinux 由于是新笔记本新CPU,在安装过程中出现了许多问题，特意记录一下。 1. 安装windows11 ​	出厂windows带了太多捆绑软件，包括但不限于联想管家等。本人选择重新安装   使用rufus将windows11镜像烧录至U盘制作系统启动盘   启动阶段按F12（">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式(十四)-Memento">
-<meta property="og:url" content="https://blog.hellowei.ga/2021/11/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F15/index.html">
+<meta property="og:title" content="Install archlinux on Thinkbook14 G4+ ARA">
+<meta property="og:url" content="https://blog.hellowei.ga/2022/09/20/Install-archlinux-on-Thinkbook14-G4-ARA/index.html">
 <meta property="og:site_name" content="HelloWei">
-<meta property="og:description" content="设计动机  在软件构建过程中，某些对象的状态在转换过程中，可能由于某种需要，要求程序能够回溯到对象之前处于某个点时的状态。如果使用一些公有接口来让其他对象得到对象的状态，便会暴露对象的细节实现。 如何实现对象状态的良好保存与恢复?但同时又不会因此而破坏对象本身的封装性。  定义  在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可以将该对象恢复到原先保存的状态">
+<meta property="og:description" content="0 前言 ​	新到的Thinkbook 14+ AMD 6800h 到手后迫不及待的试图安装双系统Win11+Archlinux 由于是新笔记本新CPU,在安装过程中出现了许多问题，特意记录一下。 1. 安装windows11 ​	出厂windows带了太多捆绑软件，包括但不限于联想管家等。本人选择重新安装   使用rufus将windows11镜像烧录至U盘制作系统启动盘   启动阶段按F12（">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.hellowei.ga/img/PatternDesign/15_01.png">
-<meta property="article:published_time" content="2021-11-17T14:45:19.000Z">
-<meta property="article:modified_time" content="2022-08-16T13:34:42.498Z">
+<meta property="article:published_time" content="2022-09-20T03:57:40.000Z">
+<meta property="article:modified_time" content="2022-09-20T17:46:16.231Z">
 <meta property="article:author" content="不吃西柚">
-<meta property="article:tag" content="设计模式">
+<meta property="article:tag" content="archlinux">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.hellowei.ga/img/PatternDesign/15_01.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://blog.hellowei.ga/2021/11/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F15/index.html">
+  <link rel="canonical" href="https://blog.hellowei.ga/2022/09/20/Install-archlinux-on-Thinkbook14-G4-ARA/index.html">
   
     <link rel="alternate" href="/atom.xml" title="HelloWei" type="application/atom+xml">
   
@@ -302,14 +300,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-设计模式15" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-Install-archlinux-on-Thinkbook14-G4-ARA" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      设计模式(十四)-Memento
+      Install archlinux on Thinkbook14 G4+ ARA
     </h1>
   
 
@@ -317,60 +315,146 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2021/11/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F15/" class="article-date">
-	  <time datetime="2021-11-17T14:45:19.000Z" itemprop="datePublished">2021-11-17</time>
+	<a href="/2022/09/20/Install-archlinux-on-Thinkbook14-G4-ARA/" class="article-date">
+	  <time datetime="2022-09-20T03:57:40.000Z" itemprop="datePublished">2022-09-20</time>
 	</a>
 </span>
         
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
-  </span>
-
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a>
+	<a class="article-tag-link-link" href="/tags/archlinux/" rel="tag">archlinux</a>
   </span>
 
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/11/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F15/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/09/20/Install-archlinux-on-Thinkbook14-G4-ARA/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h2 id="设计动机">设计动机</h2>
+        <h2 id="0-前言">0 前言</h2>
+<p>​	新到的Thinkbook 14+ AMD 6800h 到手后迫不及待的试图安装双系统Win11+Archlinux</p>
+<p>由于是新笔记本新CPU,在安装过程中出现了许多问题，特意记录一下。</p>
+<h2 id="1-安装windows11">1. 安装windows11</h2>
+<p>​	出厂windows带了太多捆绑软件，包括但不限于联想管家等。本人选择重新安装</p>
 <ol>
-<li>在软件构建过程中，某些对象的状态在转换过程中，可能由于某种需要，要求程序能够回溯到对象之前处于某个点时的状态。如果使用一些公有接口来让其他对象得到对象的状态，便会暴露对象的细节实现。</li>
-<li>如何实现对象状态的良好保存与恢复?但同时又不会因此而破坏对象本身的封装性。</li>
+<li>
+<p>使用<a target="_blank" rel="noopener" href="https://rufus.ie/zh/">rufus</a>将windows11镜像烧录至U盘制作系统启动盘</p>
+</li>
+<li>
+<p>启动阶段按<code>F12</code>（不需要按住<code>Fn</code>）进入启动选项，选择USB启动</p>
+</li>
+<li>
+<p>windows安装一路点点点就好</p>
+</li>
+<li>
+<p>安装驱动</p>
+<p>由于windows镜像中不包含螃蟹无线网卡的驱动，在安装系统连接网络部分选择连接网线(这款笔记本居然有网口)。</p>
+<p>当然也可以选择进入系统后安装驱动，<a target="_blank" rel="noopener" href="https://think.lenovo.com.cn/support/driver/newdriversdownlist.aspx?categoryid=15260&amp;CODEName=thinkbook%2014%20G4+%20ARA&amp;SearchType=%200&amp;wherePage=%202">驱动</a>由联想官方提供，下载后直接安装即可</p>
+</li>
+<li>
+<p>设置中文输入法</p>
+<p>安装系统后发现微软拼音不出现候选词，而是直接敲回车后出现文字</p>
+<p>解决方法：在键盘中其启用旧版微软拼音，具体操作流程如下</p>
+<p>设置 -&gt; 时间和语言 -&gt; 语言&amp;区域 -&gt; Microsoft拼音 -&gt; 常规 -&gt; 兼容性 -&gt; 使用以前版本的微软拼音输入法</p>
+</li>
 </ol>
-<h2 id="定义">定义</h2>
-<blockquote>
-<p>在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可以将该对象恢复到原先保存的状态。</p>
-</blockquote>
-<h2 id="结构">结构</h2>
-<p><img src="/img/PatternDesign/15_01.png" alt="结构"></p>
-<h2 id="例子">例子</h2>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  状态快照</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Memento</span>&#123;</span></span><br><span class="line">    string state;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Memento</span>(<span class="keyword">const</span> string&amp; s):<span class="built_in">state</span>(s)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">string <span class="title">getState</span><span class="params">()</span><span class="keyword">const</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> state;</span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setState</span><span class="params">(<span class="keyword">const</span> string&amp; s)</span></span>&#123;</span><br><span class="line">        state = s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Originator</span>&#123;</span></span><br><span class="line">    string state;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Originator</span>()&#123;&#125;</span><br><span class="line">    Memento createMemento&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Memento</span>(state);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setMemento</span><span class="params">(Memento memento)</span></span>&#123;</span><br><span class="line">        state = memento.<span class="built_in">getState</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Originator originator;</span><br><span class="line">    <span class="comment">//捕获对象状态，存储快照</span></span><br><span class="line">    Memento m = originator.<span class="built_in">createMemento</span>();</span><br><span class="line">    <span class="comment">//恢复快照</span></span><br><span class="line">    originator.<span class="built_in">setMemento</span>(m);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="总结">总结</h2>
+<h2 id="2-安装Archlinux">2. 安装Archlinux</h2>
+<h3 id="2-1-系统安装">2.1 系统安装</h3>
+<p>​	Arch Linux系统安装过程整体上与<a target="_blank" rel="noopener" href="https://arch.icekylin.online/prologue.html">archlinux 简明教材</a>一致，主要差别在于我使用<em>sysemd-boot</em>作为bootloader进行系统的引导，没有采用原文中较为臃肿的grub2进行系统引导。</p>
+<p>需要改变的地方</p>
+<ul>
+<li>
+<p>EFI分区挂载点不同</p>
+<p>原文在<a target="_blank" rel="noopener" href="https://arch.icekylin.online/rookie/basic-install.html#_8-%E6%8C%82%E8%BD%BD">基础安装 步骤8</a>将EFI分区挂载到系统镜像<code>/boot/efi</code>，要<strong>持续更新内核</strong>，建议将 ESP 挂载到 <code>/boot</code>，安装内核时会自动复制到<code>/boot</code>目录下. 如果没将 ESP 挂载到 <code>/boot</code>,需要手动将内核和 initramfs 复制到 ESP</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mount -t btrfs -o subvol=/@,compress=zstd /dev/nvmexn1pn /mnt <span class="comment"># 挂载 / 目录</span></span><br><span class="line">mkdir /mnt/home <span class="comment"># 创建 /home 目录</span></span><br><span class="line">mount -t btrfs -o subvol=/@home,compress=zstd /dev/nvmexn1pn /mnt/home <span class="comment"># 挂载 /home 目录</span></span><br><span class="line">mkdir -p /mnt/boot <span class="comment"># 创建 /boot/efi 目录</span></span><br><span class="line">mount /dev/nvmexn1pn /mnt/boot <span class="comment"># 挂载 /boot/efi 目录</span></span><br><span class="line">swapon /dev/nvmexn1pn <span class="comment"># 挂载交换分区</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>bootloader不同</p>
+<p>原文在<a target="_blank" rel="noopener" href="https://arch.icekylin.online/rookie/basic-install.html#_17-%E5%AE%89%E8%A3%85%E5%BC%95%E5%AF%BC%E7%A8%8B%E5%BA%8F">基础安装 步骤17</a>使用grub进行引导，由于不需要引导legacy或者其他的系统，我选择仅支持EFI启动的<em>systemd-boot</em>作为bootloader,具体步骤如下</p>
 <ol>
-<li>备忘录(Memento)存储原发器(Originator)对象的内部状态，在需要时恢复原发器状态。</li>
-<li>Memento模式的核心是信息隐藏，即Originator需要向外接隐藏信息，保持其封装性。但同时又需要将状态保持到外界(Memento) 。</li>
-<li>由于现代语言运行时（如C#、Java等）都具有相当的对象序列化支持，因此往往采用效率较高、又较容易正确实现的序列化方案来买现Memento模式。</li>
+<li>
+<p>安装 <em>systemd-boot</em> EFI 启动管理器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">esp=/boot <span class="comment">#EFI分区挂载点</span></span><br><span class="line">bootctl --path=<span class="variable">$esp</span> install</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>启动菜单配置</p>
+<p>启动菜单文件位于<code>$esp/loader/loader.conf</code>,内容示例如下</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">default  arch.conf</span><br><span class="line">timeout  4</span><br><span class="line">console-mode max</span><br><span class="line">editor   no</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>增加启动选项</p>
+<p>如果存在的话,bootctl 会自动为 “<strong>Windows Boot Manager (Windows 启动管理器)</strong>” (<code>\EFI\Microsoft\Boot\Bootmgfw.efi</code>), “<strong>EFI Shell</strong>” (<code>\shellx64.efi</code>) 和 “<strong>EFI Default Loader</strong>” (<code>\EFI\Boot\bootx64.efi</code>)增加启动选项. 但并不会为其他EFI应用程序创建启动选项,所以需要进行进一步设置. 如果你是和Windows 组成双重启动,建议禁用 <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Dual_boot_with_Windows#Fast_Startup_and_hibernation">Windows 中的&quot;快速启动&quot;</a> 选项.</p>
+<p>为archlinux增加启动选项，新建文件<code>$esp/loader/entries/arch.conf</code></p>
+<p>内容如下,实际上就是kernel的启动参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">title          Arch Linux</span><br><span class="line">linux          /vmlinuz-linux</span><br><span class="line">initrd		   /amd-ucode.img</span><br><span class="line">initrd         /initramfs-linux.img</span><br><span class="line">options        root=PARTUUID=14420948-2cea-4de7-b042-40f67c618660 rw rootflags=subvol=@</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<h2 id="状态变化-模式">&quot;状态变化&quot;模式</h2>
-<blockquote>
-<p>在组件构建过程中，某些对象的状态经常面临变化，如何对这些变化进行有效的管理?同时又维持高层模块的稳定?“状态变化&quot;模式为这一问题提供了一种解决方案。</p>
-</blockquote>
-<h3 id="典型模式">典型模式</h3>
+</li>
+</ul>
+<p>​			4. reboot 重启即可进入进入系统选择界面进入系统</p>
+<h3 id="2-2-内置键盘失灵">2.2 内置键盘失灵</h3>
+<p>​	ThinkBook 14+/16+ 2022 锐龙版(AMD 锐龙 6000系列处理器 )由于其独特的IRQ设计，键盘无法兼容原版Linux内核，其反应为键盘像所有键同时按住而卡住，想要解决此问题，需要打上<a target="_blank" rel="noopener" href="https://patchwork.kernel.org/project/linux-acpi/patch/20220712020058.90374-1-gch981213@gmail.com/">path</a>进行修改并重新编译Linux内核</p>
+<p>这里采用ABS(Arch Build System)进行自定义kernel的编译(既然archlinux提供了好用的构建系统，为何不用呢:) )</p>
+<p>主要步骤参考<a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Kernel/Arch_Build_System">Kernel/Arch Build System</a>,这里贴出自己的全部过程</p>
 <ol>
-<li><a href="/2021/11/16/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F14/">State</a></li>
-<li><a href="/2021/11/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F15/">Memento</a></li>
+<li>
+<p>新建编译目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/build</span><br><span class="line"><span class="built_in">cd</span> ~/build</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>安装asp 和base-devel</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S asp base-devel</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>获取原始内核作为自己编译kernel的基础</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">asp update linux <span class="comment">#由于网络问题我无法更新，不影响</span></span><br><span class="line">asp <span class="built_in">export</span> linux </span><br></pre></td></tr></table></figure>
+<p>执行完后查看目录树应该是这样</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">└── linux</span><br><span class="line">    ├── config</span><br><span class="line">    ├── keys</span><br><span class="line">    │   └── pgp</span><br><span class="line">    │       ├── 647F28654894E3BD457199BE38DBBDC86092693E.asc</span><br><span class="line">    │       ├── A2FF3A36AAA56654109064AB19802F8B0D70FC30.asc</span><br><span class="line">    │       ├── ABAF11C65A2970B130ABE3C479BE3E4300411886.asc</span><br><span class="line">    │       └── C7E7849466FE2358343588377258734B41C31549.asc</span><br><span class="line">    └── PKGBUILD</span><br><span class="line"></span><br><span class="line">3 directories, 6 files</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>下载需要打上的补丁，并放在与PKGBUILD同级目录下(改为patch后缀是因为ABS会自动为后缀为patch进行打补丁)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> linux</span><br><span class="line">wget https://patchwork.kernel.org/project/linux-acpi/patch/20220712020058.90374-1-gch981213@gmail.com/raw -O irq.patch <span class="comment">#下载diff文件并重命名为irq.patch(你也可以手动的下载diff文件)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>修改PKGBUILD文件</p>
+<p>找到 <code>pkgbase</code> 修改为自定义软件包的名称</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkgbase=linux-test</span><br></pre></td></tr></table></figure>
+<p>如果你想要直接替换原有的kernel,就可以不改。改了之后你要更新引导加载程序的配置文件，为新的内核和initramfs映像添加新的引导菜单项。</p>
+<p>找到 <code>source</code>数组(18行左右)添加需要打的patch</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span>=(</span><br><span class="line">  <span class="string">&quot;<span class="variable">$_srcname</span>::git+https://github.com/archlinux/linux?signed#tag=<span class="variable">$_srctag</span>&quot;</span></span><br><span class="line">  irq.patch      <span class="comment"># 下载的补丁</span></span><br><span class="line">  config         <span class="comment"># the main kernel config file</span></span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
+<p>为提高编译速度，可采用多线性并行编译，找到build(63行左右)，修改,可以自己选择线程数，还可以参考<a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Kernel/Arch_Build_System">Kernel/Arch Build System</a>的2.1避免创建文档</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">build</span></span>() &#123;</span><br><span class="line">   <span class="built_in">cd</span> <span class="variable">$_srcname</span></span><br><span class="line">   make all -j 16</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>生成新校验和</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S pacman-contrib</span><br><span class="line">updpkgsums</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>编译</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S pahole cpio xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick texlive-latexextra <span class="comment">#安装必要依赖</span></span><br><span class="line">makepkg -s --skippgpcheck</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>安装</p>
+<p>编译完成后，<code>build/linux</code>文件夹中应有两个包，分别是内核和内核的头文件。进行安装(会在/boot下生成initramfs-linux-test和vmlinuz-linux-test)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -U linux-test-5.19.19-x86_64.pkg.tar.zst linux-custom-headers-5.8.12-x86_64.pkg.tar.zst</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>为新的kernel配置启动项，见本文2.1中的增加启动选项</p>
+</li>
+<li>
+<p>如果更换了内核，别忘了把之前在原来内核的软件重新装一遍，比如说桌面环境，我发现后续在新内核安装的程序在桌面应用程序找不到，重新安装一下kde就好了</p>
+</li>
 </ol>
+<h3 id="2-3-网卡驱动">2.3 网卡驱动</h3>
+<p>安装<a target="_blank" rel="noopener" href="https://github.com/lwfinger/rtw8852be">8852be驱动</a></p>
+<h3 id="2-4-无法播放声音">2.4 无法播放声音</h3>
+<p>声卡驱动有，但是无法播放声音，缺失<a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Advanced_Linux_Sound_Architecture">alas固件</a></p>
+<p>解决方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S sof-firmware alsa-ucm-conf</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -380,7 +464,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://blog.hellowei.ga/2021/11/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F15/" title="设计模式(十四)-Memento" target="_blank" rel="external">https://blog.hellowei.ga/2021/11/17/设计模式15/</a>
+      <a href="https://blog.hellowei.ga/2022/09/20/Install-archlinux-on-Thinkbook14-G4-ARA/" title="Install archlinux on Thinkbook14 G4+ ARA" target="_blank" rel="external">https://blog.hellowei.ga/2022/09/20/Install-archlinux-on-Thinkbook14-G4-ARA/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -426,13 +510,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2021/11/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F16/" title="设计模式(十五)-“数据结构”模式"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2021/11/16/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F14/" title="设计模式(十三)-State"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2022/09/03/Installation-on-Archlinux/" title="Archlinux的包管理"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
